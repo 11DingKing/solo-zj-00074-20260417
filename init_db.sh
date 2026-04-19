@@ -11,6 +11,12 @@ done
 
 echo "MySQL 服务已启动，开始执行初始化脚本..."
 
+# 修改 root 用户的认证插件为 mysql_native_password
+echo "修改 root 用户认证插件..."
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '$MYSQL_ROOT_PASSWORD';"
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$MYSQL_ROOT_PASSWORD';"
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
+
 # 执行 SQL 脚本
 mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "source $WORK_PATH/$FILE_0;"
 mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "source $WORK_PATH/$FILE_1;"
