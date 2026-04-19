@@ -70,23 +70,17 @@ export default {
       todos: '',
       activeName: 'first',
       list: [],
-      count: 0,
       id: ''
     }
   },
   computed: {
+    count () {
+      return this.list.filter(item => item.status === true || item.status === 1).length
+    },
     Done () {
-      let count = 0
-      let length = this.list.length
-      for (let i in this.list) {
-        this.list[i].status === 1 ? count += 1 : count += 0
-      }
-      this.count = count
-      if (count === length || length === 0) {
-        return true
-      } else {
-        return false
-      }
+      const length = this.list.length
+      if (length === 0) return true
+      return this.count === length
     }
   },
 
