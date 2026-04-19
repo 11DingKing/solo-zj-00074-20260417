@@ -1,10 +1,9 @@
-FROM mysql:5.7
+FROM mysql:8.0
 LABEL maintainer="Molunerfinn <marksz@teamsz.xyz>"
 ARG MYSQL_ROOT_PASSWORD
-ARG MYSQL_USER
 
 ENV MYSQL_ROOT_PASSWORD $MYSQL_ROOT_PASSWORD
-ENV MYSQL_USER $MYSQL_USER
+ENV MYSQL_AUTHENTICATION_PLUGIN mysql_native_password
 ENV WORK_PATH /usr/local/db
 ENV FILE_0 list.sql
 ENV FILE_1 user.sql
