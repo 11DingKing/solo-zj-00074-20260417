@@ -12,6 +12,7 @@ services:
       - ./.env
     volumes:
       - ./:/www
+      - /www/node_modules
     ports:
       - ${PORT}:${PORT}
     command: "npm run start"
